@@ -1,9 +1,6 @@
 package model;
 
-/**
- * POJO (Plain Old Java Object) representing the MonHoc table.
- * This is our "Model" for a subject (e.g., "Calculus 1").
- */
+
 public class MonHoc {
 
     private String maMonHoc;
@@ -11,19 +8,11 @@ public class MonHoc {
     private String tenMonHoc;
     private int soTinChi; // Number of credits
 
-    /**
-     * Default constructor.
-     */
+
     public MonHoc() {
     }
 
-    /**
-     * Constructor with all fields.
-     * @param maMonHoc Primary key (subject ID)
-     * @param maKhoa Foreign key to the department
-     * @param tenMonHoc Name of the subject
-     * @param soTinChi Number of credits for the subject
-     */
+
     public MonHoc(String maMonHoc, String maKhoa, String tenMonHoc, int soTinChi) {
         this.maMonHoc = maMonHoc;
         this.maKhoa = maKhoa;
@@ -65,9 +54,7 @@ public class MonHoc {
         this.soTinChi = soTinChi;
     }
 
-    /**
-     * Provides a user-friendly string representation.
-     */
+
     @Override
     public String toString() {
         return this.tenMonHoc + " (" + this.maMonHoc + ") - " + this.soTinChi + " tín chỉ";

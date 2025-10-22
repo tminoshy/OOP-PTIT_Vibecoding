@@ -17,10 +17,10 @@ public class DatabaseConnector {
     private static final String URL = "jdbc:mysql://localhost:3306/quanlysinhvien?useSSL=false&serverTimezone=UTC";
 
     // Your MySQL database username (default is often "root")
-    private static final String USER = "root";
+    private static final String USER = "minh2";
 
     // Your MySQL database password (CHANGE THIS to your password)
-    private static final String PASSWORD = "root"; // <-- *** CHANGE THIS ***
+    private static final String PASSWORD = "123456789"; // <-- *** CHANGE THIS ***
 
     /**
      * Attempts to establish a connection to the database.

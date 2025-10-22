@@ -11,16 +11,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for the LopHocPhan (Course Section) table.
- * Handles all database operations for LopHocPhan.
- */
+
 public class LopHocPhanDAO {
 
-    /**
-     * Retrieves a list of all LopHocPhan from the database.
-     * @return A list of LopHocPhan objects.
-     */
+
     public List<LopHocPhan> getAllLopHocPhan() {
         List<LopHocPhan> danhSachLHP = new ArrayList<>();
         String sql = "SELECT * FROM LopHocPhan";
@@ -44,11 +38,7 @@ public class LopHocPhanDAO {
         return danhSachLHP;
     }
 
-    /**
-     * Adds a new LopHocPhan to the database.
-     * @param lhp The LopHocPhan object to add.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean addLopHocPhan(LopHocPhan lhp) {
         String sql = "INSERT INTO LopHocPhan (MaLop, MaMonHoc, MaGiangVien, HocKy, NamHoc) VALUES (?, ?, ?, ?, ?)";
 
@@ -69,11 +59,7 @@ public class LopHocPhanDAO {
         }
     }
 
-    /**
-     * Updates an existing LopHocPhan in the database.
-     * @param lhp The LopHocPhan object with updated information.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean updateLopHocPhan(LopHocPhan lhp) {
         String sql = "UPDATE LopHocPhan SET MaMonHoc = ?, MaGiangVien = ?, HocKy = ?, NamHoc = ? WHERE MaLop = ?";
 
@@ -94,11 +80,7 @@ public class LopHocPhanDAO {
         }
     }
 
-    /**
-     * Deletes a LopHocPhan from the database.
-     * @param maLop The ID of the LopHocPhan to delete.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean deleteLopHocPhan(String maLop) {
         String sql = "DELETE FROM LopHocPhan WHERE MaLop = ?";
 
@@ -115,11 +97,7 @@ public class LopHocPhanDAO {
         }
     }
 
-    /**
-     * Retrieves a single LopHocPhan by its ID.
-     * @param maLop The ID of the LopHocPhan.
-     * @return A LopHocPhan object, or null if not found.
-     */
+
     public LopHocPhan getLopHocPhanById(String maLop) {
         String sql = "SELECT * FROM LopHocPhan WHERE MaLop = ?";
         LopHocPhan lhp = null;

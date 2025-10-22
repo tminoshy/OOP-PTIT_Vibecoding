@@ -1,9 +1,6 @@
 package model;
 
-/**
- * POJO (Plain Old Java Object) representing the GiangVien table.
- * This is our "Model" for a lecturer.
- */
+
 public class GiangVien {
 
     private String maGiangVien;
@@ -16,15 +13,10 @@ public class GiangVien {
     private String hocVi; // Degree: e.g., "Cử nhân", "Thạc sĩ", "Tiến sĩ"
     private String hocHam; // Academic Rank: e.g., "GS", "PGS"
 
-    /**
-     * Default constructor.
-     */
     public GiangVien() {
     }
 
-    /**
-     * Constructor with all fields.
-     */
+
     public GiangVien(String maGiangVien, String hoVaTen, String email, String soDienThoai,
                      String maKhoa, String ngaySinh, char gioiTinh, String hocVi, String hocHam) {
         this.maGiangVien = maGiangVien;
@@ -112,9 +104,7 @@ public class GiangVien {
         this.hocHam = hocHam;
     }
 
-    /**
-     * Provides a user-friendly string representation.
-     */
+
     @Override
     public String toString() {
         String rank = (hocHam != null && !hocHam.isEmpty()) ? hocHam + " " : "";

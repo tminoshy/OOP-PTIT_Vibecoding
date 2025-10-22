@@ -11,16 +11,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for the BangDiem (Grade) table.
- * Handles all database operations for BangDiem.
- */
+
 public class BangDiemDAO {
 
-    /**
-     * Retrieves a list of all BangDiem from the database.
-     * @return A list of BangDiem objects.
-     */
+
     public List<BangDiem> getAllBangDiem() {
         List<BangDiem> danhSachBD = new ArrayList<>();
         String sql = "SELECT * FROM BangDiem";
@@ -45,11 +39,7 @@ public class BangDiemDAO {
         return danhSachBD;
     }
 
-    /**
-     * Adds a new BangDiem to the database.
-     * @param bd The BangDiem object to add.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean addBangDiem(BangDiem bd) {
         String sql = "INSERT INTO BangDiem (IDBangDiem, MaDangKy, DiemChuyenCan, DiemGiuaKy, DiemCuoiKy, DiemTongKet) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -72,11 +62,7 @@ public class BangDiemDAO {
         }
     }
 
-    /**
-     * Updates an existing BangDiem in the database.
-     * @param bd The BangDiem object with updated information.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean updateBangDiem(BangDiem bd) {
         String sql = "UPDATE BangDiem SET MaDangKy = ?, DiemChuyenCan = ?, DiemGiuaKy = ?, DiemCuoiKy = ?, DiemTongKet = ? " +
                 "WHERE IDBangDiem = ?";
@@ -99,11 +85,7 @@ public class BangDiemDAO {
         }
     }
 
-    /**
-     * Deletes a BangDiem from the database.
-     * @param idBangDiem The ID of the BangDiem to delete.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean deleteBangDiem(String idBangDiem) {
         String sql = "DELETE FROM BangDiem WHERE IDBangDiem = ?";
 
@@ -120,11 +102,7 @@ public class BangDiemDAO {
         }
     }
 
-    /**
-     * Retrieves a single BangDiem by its ID.
-     * @param idBangDiem The ID of the BangDiem.
-     * @return A BangDiem object, or null if not found.
-     */
+
     public BangDiem getBangDiemById(String idBangDiem) {
         String sql = "SELECT * FROM BangDiem WHERE IDBangDiem = ?";
         BangDiem bd = null;
@@ -150,11 +128,7 @@ public class BangDiemDAO {
         return bd;
     }
 
-    /**
-     * Retrieves a single BangDiem by its Foreign Key (MaDangKy).
-     * @param maDangKy The MaDangKy of the registration.
-     * @return A BangDiem object, or null if not found.
-     */
+
     public BangDiem getBangDiemByMaDangKy(String maDangKy) {
         String sql = "SELECT * FROM BangDiem WHERE MaDangKy = ?";
         BangDiem bd = null;

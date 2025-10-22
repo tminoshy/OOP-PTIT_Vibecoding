@@ -1,10 +1,5 @@
 package model;
 
-/**
- * POJO (Plain Old Java Object) representing the DangKy table.
- * This is our "Model" for a single registration.
- * It links a SinhVien (Student) to a LopHocPhan (Course Section).
- */
 public class DangKy {
 
     private String maDangKy; // Primary Key
@@ -12,19 +7,11 @@ public class DangKy {
     private String maLop; // Foreign key to LopHocPhan
     private String ngayDangKy; // Registration date (e.g., "YYYY-MM-DD")
 
-    /**
-     * Default constructor.
-     */
+
     public DangKy() {
     }
 
-    /**
-     * Constructor with all fields.
-     * @param maDangKy Primary key
-     * @param maSinhVien Foreign key to SinhVien
-     * @param maLop Foreign key to LopHocPhan
-     * @param ngayDangKy The date of registration
-     */
+
     public DangKy(String maDangKy, String maSinhVien, String maLop, String ngayDangKy) {
         this.maDangKy = maDangKy;
         this.maSinhVien = maSinhVien;
@@ -66,9 +53,7 @@ public class DangKy {
         this.ngayDangKy = ngayDangKy;
     }
 
-    /**
-     * Provides a user-friendly string representation.
-     */
+
     @Override
     public String toString() {
         return "Đăng ký [" + this.maDangKy + "]: SV(" + this.maSinhVien +
