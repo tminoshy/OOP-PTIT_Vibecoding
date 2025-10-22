@@ -45,7 +45,7 @@ public class SinhVienDAO {
                 sv.setDiaChi(rs.getString("DiaChi"));
                 sv.setEmail(rs.getString("Email"));
                 sv.setSdt(rs.getString("Sdt"));
-                sv.setCccd(rs.getString("CCCD"));
+                sv.setCCCD(rs.getString("CCCD"));
                 sv.setMaLop(rs.getString("MaLop"));
 
                 danhSachSinhVien.add(sv);
@@ -76,7 +76,7 @@ public class SinhVienDAO {
             pstmt.setString(5, sv.getDiaChi());
             pstmt.setString(6, sv.getEmail());
             pstmt.setString(7, sv.getSdt());
-            pstmt.setString(8, sv.getCccd());
+            pstmt.setString(8, sv.getCCCD());
             pstmt.setString(9, sv.getMaLop());
 
             int rowsAffected = pstmt.executeUpdate();
@@ -105,7 +105,7 @@ public class SinhVienDAO {
             pstmt.setString(4, sv.getDiaChi());
             pstmt.setString(5, sv.getEmail());
             pstmt.setString(6, sv.getSdt());
-            pstmt.setString(7, sv.getCccd());
+            pstmt.setString(7, sv.getCCCD());
             pstmt.setString(8, sv.getMaLop());
             pstmt.setString(9, sv.getMaSinhVien()); // Set the MaSinhVien for the WHERE clause
 
@@ -166,7 +166,7 @@ public class SinhVienDAO {
                     sv.setDiaChi(rs.getString("DiaChi"));
                     sv.setEmail(rs.getString("Email"));
                     sv.setSdt(rs.getString("Sdt"));
-                    sv.setCccd(rs.getString("CCCD"));
+                    sv.setCCCD(rs.getString("CCCD"));
                     sv.setMaLop(rs.getString("MaLop"));
                 }
             }

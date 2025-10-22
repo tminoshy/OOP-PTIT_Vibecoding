@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Date;
 
 /**
  * POJO (Plain Old Java Object) representing the SinhVien table.
@@ -10,7 +9,7 @@ public class SinhVien {
 
     private String maSinhVien;
     private String hoTen;
-    private Date ngaySinh; // Using java.util.Date, but java.sql.Date is needed for JDBC
+    private String ngaySinh; // Using String for simplicity, matches database schema
     private char gioiTinh;
     private String diaChi;
     private String email;
@@ -23,7 +22,7 @@ public class SinhVien {
     }
 
     // Constructor with all fields
-    public SinhVien(String maSinhVien, String hoTen, Date ngaySinh, char gioiTinh, String diaChi, String email, String sdt, String CCCD, String maLop) {
+    public SinhVien(String maSinhVien, String hoTen, String ngaySinh, char gioiTinh, String diaChi, String email, String sdt, String CCCD, String maLop) {
         this.maSinhVien = maSinhVien;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -53,11 +52,11 @@ public class SinhVien {
         this.hoTen = hoTen;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
