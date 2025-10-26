@@ -16,7 +16,7 @@ public class Khoa {
         this.tenKhoa = tenKhoa;
     }
 
-    // --- Getters and Setters ---
+
 
     public String getMaKhoa() {
         return maKhoa;

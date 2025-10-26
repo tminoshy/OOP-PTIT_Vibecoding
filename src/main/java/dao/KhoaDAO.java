@@ -11,16 +11,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for the Khoa (Department) table.
- * Handles all database operations for Khoa.
- */
+
 public class KhoaDAO {
 
-    /**
-     * Retrieves a list of all Khoa from the database.
-     * @return A list of Khoa objects.
-     */
+
     public List<Khoa> getAllKhoa() {
         List<Khoa> danhSachKhoa = new ArrayList<>();
         String sql = "SELECT * FROM Khoa";
@@ -42,11 +36,7 @@ public class KhoaDAO {
         return danhSachKhoa;
     }
 
-    /**
-     * Adds a new Khoa to the database.
-     * @param khoa The Khoa object to add.
-     * @return true if the operation was successful, false otherwise.
-     */
+
     public boolean addKhoa(Khoa khoa) {
         String sql = "INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES (?, ?)";
 
@@ -64,11 +54,7 @@ public class KhoaDAO {
         }
     }
 
-    /**
-     * Updates an existing Khoa in the database.
-     * @param khoa The Khoa object with updated information.
-     * @return true if the operation was successful, false otherwise.
-     */
+
     public boolean updateKhoa(Khoa khoa) {
         String sql = "UPDATE Khoa SET TenKhoa = ? WHERE MaKhoa = ?";
 
@@ -86,11 +72,7 @@ public class KhoaDAO {
         }
     }
 
-    /**
-     * Deletes a Khoa from the database.
-     * @param maKhoa The ID of the Khoa to delete.
-     * @return true if the operation was successful, false otherwise.
-     */
+
     public boolean deleteKhoa(String maKhoa) {
         String sql = "DELETE FROM Khoa WHERE MaKhoa = ?";
 
@@ -108,11 +90,7 @@ public class KhoaDAO {
         }
     }
 
-    /**
-     * Retrieves a single Khoa by its ID.
-     * @param maKhoa The ID of the Khoa.
-     * @return A Khoa object, or null if not found.
-     */
+
     public Khoa getKhoaById(String maKhoa) {
         String sql = "SELECT * FROM Khoa WHERE MaKhoa = ?";
         Khoa khoa = null;

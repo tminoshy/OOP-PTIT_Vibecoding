@@ -8,11 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Panel for managing classes (Lop)
- * Provides CRUD operations for class management
- * (Matches the style of KhoaManagementPanel)
- */
+
 public class LopManagementPanel extends JPanel {
 
     private LopDAO lopDAO;
@@ -37,14 +33,14 @@ public class LopManagementPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                // Make table cells not editable
+
                 return false;
             }
         };
         lopTable = new JTable(tableModel);
         lopTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Add a selection listener to the table
+
         lopTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 loadSelectedLop();
@@ -55,7 +51,7 @@ public class LopManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
 
-        // Input panel
+
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin lớp"));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -83,7 +79,7 @@ public class LopManagementPanel extends JPanel {
         inputPanel.add(txtSiSo, gbc);
 
 
-        // Button panel
+
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
@@ -91,7 +87,7 @@ public class LopManagementPanel extends JPanel {
         JButton btnClear = new JButton("Làm mới");
         JButton btnRefresh = new JButton("Tải lại");
 
-        // Add action listeners
+
         btnAdd.addActionListener(e -> addLop());
         btnUpdate.addActionListener(e -> updateLop());
         btnDelete.addActionListener(e -> deleteLop());
@@ -104,22 +100,20 @@ public class LopManagementPanel extends JPanel {
         buttonPanel.add(btnClear);
         buttonPanel.add(btnRefresh);
 
-        // Table panel
+
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách lớp"));
         JScrollPane scrollPane = new JScrollPane(lopTable);
         scrollPane.setPreferredSize(new Dimension(0, 300));
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Add panels to the main layout
+
         add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
         add(tablePanel, BorderLayout.SOUTH);
     }
 
-    /**
-     * Loads all Lop from the database and populates the JTable
-     */
+
     private void loadLopData() {
         tableModel.setRowCount(0); // Clear existing data
         List<Lop> lopList = lopDAO.getAllLop();
@@ -135,9 +129,7 @@ public class LopManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Populates the text fields when a row in the table is selected
-     */
+
     private void loadSelectedLop() {
         int selectedRow = lopTable.getSelectedRow();
         if (selectedRow >= 0) {
@@ -148,9 +140,7 @@ public class LopManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Validates input and adds a new Lop to the database
-     */
+
     private void addLop() {
         Lop lop = createLopFromInput();
         if (lop != null) {
@@ -164,9 +154,7 @@ public class LopManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Validates input and updates an existing Lop in the database
-     */
+
     private void updateLop() {
         Lop lop = createLopFromInput();
         if (lop != null) {
@@ -179,9 +167,7 @@ public class LopManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Deletes the selected Lop from the database
-     */
+
     private void deleteLop() {
         String maLop = txtMaLop.getText().trim();
         if (maLop.isEmpty()) {
@@ -205,9 +191,7 @@ public class LopManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Clears all text fields and table selection
-     */
+
     private void clearFields() {
         txtMaLop.setText("");
         txtPhongHocChinh.setText("");
@@ -216,10 +200,7 @@ public class LopManagementPanel extends JPanel {
         lopTable.clearSelection();
     }
 
-    /**
-     * Validates that required fields are not empty and are in the correct format
-     * @return true if input is valid, false otherwise
-     */
+
     private boolean validateInput() {
         if (txtMaLop.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mã lớp!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -238,7 +219,7 @@ public class LopManagementPanel extends JPanel {
             return false;
         }
 
-        // Validate integer field
+
         try {
             Integer.parseInt(txtSiSo.getText().trim());
         } catch (NumberFormatException e) {
@@ -249,13 +230,10 @@ public class LopManagementPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Creates a Lop object from the text field inputs
-     * @return a new Lop object, or null if validation fails
-     */
+
     private Lop createLopFromInput() {
         if (!validateInput()) {
-            return null; // Return null if validation fails
+            return null;
         }
 
         Lop lop = new Lop();

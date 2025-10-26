@@ -8,11 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Panel for managing departments (Khoa)
- * Provides CRUD operations for department management
- * (Matches the style of RegistrationManagementPanel)
- */
+
 public class KhoaManagementPanel extends JPanel {
 
     private KhoaDAO khoaDAO;
@@ -35,14 +31,14 @@ public class KhoaManagementPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                // Make table cells not editable
+
                 return false;
             }
         };
         khoaTable = new JTable(tableModel);
         khoaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Add a selection listener to the table
+
         khoaTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 loadSelectedKhoa();
@@ -53,7 +49,7 @@ public class KhoaManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
 
-        // Input panel (using GridBagLayout like your example)
+
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin khoa"));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -69,7 +65,7 @@ public class KhoaManagementPanel extends JPanel {
         gbc.gridx = 1;
         inputPanel.add(txtTenKhoa, gbc);
 
-        // Button panel (using FlowLayout like your example)
+
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
@@ -77,7 +73,7 @@ public class KhoaManagementPanel extends JPanel {
         JButton btnClear = new JButton("Làm mới");
         JButton btnRefresh = new JButton("Tải lại");
 
-        // Add action listeners
+
         btnAdd.addActionListener(e -> addKhoa());
         btnUpdate.addActionListener(e -> updateKhoa());
         btnDelete.addActionListener(e -> deleteKhoa());
@@ -90,23 +86,19 @@ public class KhoaManagementPanel extends JPanel {
         buttonPanel.add(btnClear);
         buttonPanel.add(btnRefresh);
 
-        // Table panel (using BorderLayout like your example)
+
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách khoa"));
         JScrollPane scrollPane = new JScrollPane(khoaTable);
-        // Give the table some preferred height in the layout
+
         scrollPane.setPreferredSize(new Dimension(0, 300));
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Add panels to the main layout
         add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
         add(tablePanel, BorderLayout.SOUTH);
     }
 
-    /**
-     * Loads all Khoa from the database and populates the JTable
-     */
     private void loadKhoaData() {
         tableModel.setRowCount(0); // Clear existing data
         List<Khoa> khoaList = khoaDAO.getAllKhoa();
@@ -120,9 +112,6 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Populates the text fields when a row in the table is selected
-     */
     private void loadSelectedKhoa() {
         int selectedRow = khoaTable.getSelectedRow();
         if (selectedRow >= 0) {
@@ -131,9 +120,7 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Validates input and adds a new Khoa to the database
-     */
+
     private void addKhoa() {
         if (validateInput()) {
             Khoa k = createKhoaFromInput();
@@ -147,9 +134,7 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Validates input and updates an existing Khoa in the database
-     */
+
     private void updateKhoa() {
         if (validateInput()) {
             Khoa k = createKhoaFromInput();
@@ -162,9 +147,7 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Deletes the selected Khoa from the database
-     */
+
     private void deleteKhoa() {
         String maKhoa = txtMaKhoa.getText().trim();
         if (maKhoa.isEmpty()) {
@@ -188,19 +171,14 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Clears all text fields and table selection
-     */
+
     private void clearFields() {
         txtMaKhoa.setText("");
         txtTenKhoa.setText("");
         khoaTable.clearSelection();
     }
 
-    /**
-     * Validates that required fields are not empty
-     * @return true if input is valid, false otherwise
-     */
+
     private boolean validateInput() {
         if (txtMaKhoa.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mã khoa!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -213,10 +191,7 @@ public class KhoaManagementPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Creates a Khoa object from the text field inputs
-     * @return a new Khoa object
-     */
+
     private Khoa createKhoaFromInput() {
         Khoa k = new Khoa();
         k.setMaKhoa(txtMaKhoa.getText().trim());

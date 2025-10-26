@@ -20,7 +20,6 @@ public class Lop {
         this.siSo = siSo;
     }
 
-    // --- Getters and Setters ---
 
     public String getMaLop() {
         return maLop;

@@ -11,16 +11,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for the Lop (Class) table.
- * Handles all database operations for Lop.
- */
+
 public class LopDAO {
 
-    /**
-     * Retrieves a list of all Lop from the database.
-     * @return A list of Lop objects.
-     */
+
     public List<Lop> getAllLop() {
         List<Lop> danhSachLop = new ArrayList<>();
         String sql = "SELECT * FROM Lop";
@@ -43,11 +37,7 @@ public class LopDAO {
         return danhSachLop;
     }
 
-    /**
-     * Adds a new Lop to the database.
-     * @param lop The Lop object to add.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean addLop(Lop lop) {
         String sql = "INSERT INTO Lop (MaLop, PhongHocChinh, MaKhoa, SiSo) VALUES (?, ?, ?, ?)";
 
@@ -67,11 +57,7 @@ public class LopDAO {
         }
     }
 
-    /**
-     * Updates an existing Lop in the database.
-     * @param lop The Lop object with updated information.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean updateLop(Lop lop) {
         String sql = "UPDATE Lop SET PhongHocChinh = ?, MaKhoa = ?, SiSo = ? WHERE MaLop = ?";
 
@@ -91,11 +77,7 @@ public class LopDAO {
         }
     }
 
-    /**
-     * Deletes a Lop from the database.
-     * @param maLop The ID of the Lop to delete.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean deleteLop(String maLop) {
         String sql = "DELETE FROM Lop WHERE MaLop = ?";
 
@@ -112,11 +94,7 @@ public class LopDAO {
         }
     }
 
-    /**
-     * Retrieves a single Lop by its ID.
-     * @param maLop The ID of the Lop.
-     * @return A Lop object, or null if not found.
-     */
+
     public Lop getLopById(String maLop) {
         String sql = "SELECT * FROM Lop WHERE MaLop = ?";
         Lop lop = null;
