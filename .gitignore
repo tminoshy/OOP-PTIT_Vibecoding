@@ -36,3 +36,21 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+
+
+# Java compiled files
+*.class
+
+# Maven/Gradle build directories
+target/
+build/
+
+# IDE files (IntelliJ, VSCode, Eclipse)
+.idea/
+*.iml
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
