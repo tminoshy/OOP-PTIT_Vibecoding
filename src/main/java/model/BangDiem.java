@@ -1,34 +1,19 @@
 package model;
 
-/**
- * POJO (Plain Old Java Object) representing the BangDiem table.
- * This is our "Model" for the grade sheet.
- * It links directly to a DangKy (Registration) entry.
- */
+
 public class BangDiem {
 
-    private String idBangDiem; // Primary Key
-    private String maDangKy; // Foreign key to DangKy (one-to-one)
-    private float diemChuyenCan; // Attendance score
-    private float diemGiuaKy; // Midterm score
-    private float diemCuoiKy; // Final exam score
-    private float diemTongKet; // Final calculated score
+    private String idBangDiem;
+    private String maDangKy;
+    private float diemChuyenCan;
+    private float diemGiuaKy;
+    private float diemCuoiKy;
+    private float diemTongKet; 
 
-    /**
-     * Default constructor.
-     */
+
     public BangDiem() {
     }
 
-    /**
-     * Constructor with all fields.
-     * @param idBangDiem Primary key
-     * @param maDangKy Foreign key to DangKy
-     * @param diemChuyenCan Attendance score
-     * @param diemGiuaKy Midterm score
-     * @param diemCuoiKy Final exam score
-     * @param diemTongKet Final calculated score
-     */
     public BangDiem(String idBangDiem, String maDangKy, float diemChuyenCan, float diemGiuaKy, float diemCuoiKy, float diemTongKet) {
         this.idBangDiem = idBangDiem;
         this.maDangKy = maDangKy;
@@ -38,7 +23,6 @@ public class BangDiem {
         this.diemTongKet = diemTongKet;
     }
 
-    // --- Getters and Setters ---
 
     public String getIdBangDiem() {
         return idBangDiem;
@@ -88,9 +72,6 @@ public class BangDiem {
         this.diemTongKet = diemTongKet;
     }
 
-    /**
-     * Provides a user-friendly string representation.
-     */
     @Override
     public String toString() {
         return "Bảng điểm [" + this.idBangDiem + "] for ĐK(" + this.maDangKy +

@@ -1,19 +1,31 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.LopHocPhanDAO;
 import dao.MonHocDAO;
 import model.LopHocPhan;
 import model.MonHoc;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
 
-/**
- * Panel for managing courses and course sections
- * Provides CRUD operations for MonHoc and LopHocPhan
- */
 public class CourseManagementPanel extends JPanel {
     
     private MonHocDAO monHocDAO;
@@ -30,7 +42,6 @@ public class CourseManagementPanel extends JPanel {
     private void initializeComponents() {
         courseTabbedPane = new JTabbedPane();
         
-        // Create sub-panels
         MonHocManagementPanel monHocPanel = new MonHocManagementPanel();
         LopHocPhanManagementPanel lopHocPhanPanel = new LopHocPhanManagementPanel();
         
@@ -43,7 +54,6 @@ public class CourseManagementPanel extends JPanel {
         add(courseTabbedPane, BorderLayout.CENTER);
     }
     
-    // Inner class for MonHoc management
     private class MonHocManagementPanel extends JPanel {
         private JTable monHocTable;
         private DefaultTableModel tableModel;
@@ -75,7 +85,6 @@ public class CourseManagementPanel extends JPanel {
         private void setupLayout() {
             setLayout(new BorderLayout());
             
-            // Input panel
             JPanel inputPanel = new JPanel(new GridBagLayout());
             inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin môn học"));
             GridBagConstraints gbc = new GridBagConstraints();
@@ -101,7 +110,6 @@ public class CourseManagementPanel extends JPanel {
             gbc.gridx = 3;
             inputPanel.add(txtMaKhoa, gbc);
             
-            // Button panel
             JPanel buttonPanel = new JPanel(new FlowLayout());
             JButton btnAdd = new JButton("Thêm");
             JButton btnUpdate = new JButton("Cập nhật");
@@ -121,7 +129,6 @@ public class CourseManagementPanel extends JPanel {
             buttonPanel.add(btnClear);
             buttonPanel.add(btnRefresh);
             
-            // Table panel
             JPanel tablePanel = new JPanel(new BorderLayout());
             tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách môn học"));
             JScrollPane scrollPane = new JScrollPane(monHocTable);
@@ -229,7 +236,6 @@ public class CourseManagementPanel extends JPanel {
         }
     }
     
-    // Inner class for LopHocPhan management
     private class LopHocPhanManagementPanel extends JPanel {
         private JTable lopHocPhanTable;
         private DefaultTableModel tableModel;
@@ -262,7 +268,6 @@ public class CourseManagementPanel extends JPanel {
         private void setupLayout() {
             setLayout(new BorderLayout());
             
-            // Input panel
             JPanel inputPanel = new JPanel(new GridBagLayout());
             inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin lớp học phần"));
             GridBagConstraints gbc = new GridBagConstraints();
@@ -293,7 +298,6 @@ public class CourseManagementPanel extends JPanel {
             gbc.gridx = 1;
             inputPanel.add(txtNamHoc, gbc);
             
-            // Button panel
             JPanel buttonPanel = new JPanel(new FlowLayout());
             JButton btnAdd = new JButton("Thêm");
             JButton btnUpdate = new JButton("Cập nhật");
@@ -313,7 +317,6 @@ public class CourseManagementPanel extends JPanel {
             buttonPanel.add(btnClear);
             buttonPanel.add(btnRefresh);
             
-            // Table panel
             JPanel tablePanel = new JPanel(new BorderLayout());
             tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách lớp học phần"));
             JScrollPane scrollPane = new JScrollPane(lopHocPhanTable);

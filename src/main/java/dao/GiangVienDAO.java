@@ -11,16 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for the GiangVien (Lecturer) table.
- * Handles all database operations for GiangVien.
- */
+
 public class GiangVienDAO {
 
-    /**
-     * Retrieves a list of all GiangVien from the database.
-     * @return A list of GiangVien objects.
-     */
     public List<GiangVien> getAllGiangVien() {
         List<GiangVien> danhSachGV = new ArrayList<>();
         String sql = "SELECT * FROM GiangVien";
@@ -48,11 +41,7 @@ public class GiangVienDAO {
         return danhSachGV;
     }
 
-    /**
-     * Adds a new GiangVien to the database.
-     * @param gv The GiangVien object to add.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean addGiangVien(GiangVien gv) {
         String sql = "INSERT INTO GiangVien (MaGiangVien, HoVaTen, Email, SoDienThoai, MaKhoa, NgaySinh, GioiTinh, HocVi, HocHam) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -78,11 +67,6 @@ public class GiangVienDAO {
         }
     }
 
-    /**
-     * Updates an existing GiangVien in the database.
-     * @param gv The GiangVien object with updated information.
-     * @return true if successful, false otherwise.
-     */
     public boolean updateGiangVien(GiangVien gv) {
         String sql = "UPDATE GiangVien SET HoVaTen = ?, Email = ?, SoDienThoai = ?, MaKhoa = ?, " +
                 "NgaySinh = ?, GioiTinh = ?, HocVi = ?, HocHam = ? WHERE MaGiangVien = ?";
@@ -108,11 +92,6 @@ public class GiangVienDAO {
         }
     }
 
-    /**
-     * Deletes a GiangVien from the database.
-     * @param maGiangVien The ID of the GiangVien to delete.
-     * @return true if successful, false otherwise.
-     */
     public boolean deleteGiangVien(String maGiangVien) {
         String sql = "DELETE FROM GiangVien WHERE MaGiangVien = ?";
 
@@ -129,11 +108,6 @@ public class GiangVienDAO {
         }
     }
 
-    /**
-     * Retrieves a single GiangVien by its ID.
-     * @param maGiangVien The ID of the GiangVien.
-     * @return A GiangVien object, or null if not found.
-     */
     public GiangVien getGiangVienById(String maGiangVien) {
         String sql = "SELECT * FROM GiangVien WHERE MaGiangVien = ?";
         GiangVien gv = null;

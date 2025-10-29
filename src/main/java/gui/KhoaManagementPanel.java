@@ -1,12 +1,26 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.KhoaDAO;
 import model.Khoa;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
 
 
 public class KhoaManagementPanel extends JPanel {
@@ -31,13 +45,11 @@ public class KhoaManagementPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-
                 return false;
             }
         };
         khoaTable = new JTable(tableModel);
         khoaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
 
         khoaTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -49,11 +61,10 @@ public class KhoaManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
 
-
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin khoa"));
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5); // Padding
+        gbc.insets = new Insets(5, 5, 5, 5);
 
         gbc.gridx = 0; gbc.gridy = 0;
         inputPanel.add(new JLabel("Mã khoa:"), gbc);
@@ -65,14 +76,12 @@ public class KhoaManagementPanel extends JPanel {
         gbc.gridx = 1;
         inputPanel.add(txtTenKhoa, gbc);
 
-
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
         JButton btnDelete = new JButton("Xóa");
         JButton btnClear = new JButton("Làm mới");
         JButton btnRefresh = new JButton("Tải lại");
-
 
         btnAdd.addActionListener(e -> addKhoa());
         btnUpdate.addActionListener(e -> updateKhoa());
@@ -86,11 +95,9 @@ public class KhoaManagementPanel extends JPanel {
         buttonPanel.add(btnClear);
         buttonPanel.add(btnRefresh);
 
-
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách khoa"));
         JScrollPane scrollPane = new JScrollPane(khoaTable);
-
         scrollPane.setPreferredSize(new Dimension(0, 300));
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
@@ -99,8 +106,9 @@ public class KhoaManagementPanel extends JPanel {
         add(tablePanel, BorderLayout.SOUTH);
     }
 
+
     private void loadKhoaData() {
-        tableModel.setRowCount(0); // Clear existing data
+        tableModel.setRowCount(0); 
         List<Khoa> khoaList = khoaDAO.getAllKhoa();
 
         for (Khoa k : khoaList) {
@@ -112,6 +120,7 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
+
     private void loadSelectedKhoa() {
         int selectedRow = khoaTable.getSelectedRow();
         if (selectedRow >= 0) {
@@ -120,14 +129,13 @@ public class KhoaManagementPanel extends JPanel {
         }
     }
 
-
     private void addKhoa() {
         if (validateInput()) {
             Khoa k = createKhoaFromInput();
             if (khoaDAO.addKhoa(k)) {
                 JOptionPane.showMessageDialog(this, "Thêm khoa thành công!");
-                loadKhoaData(); // Refresh table
-                clearFields(); // Clear form
+                loadKhoaData();
+                clearFields(); 
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi thêm khoa! Mã khoa có thể đã tồn tại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -140,7 +148,7 @@ public class KhoaManagementPanel extends JPanel {
             Khoa k = createKhoaFromInput();
             if (khoaDAO.updateKhoa(k)) {
                 JOptionPane.showMessageDialog(this, "Cập nhật khoa thành công!");
-                loadKhoaData(); // Refresh table
+                loadKhoaData();
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật khoa!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -163,8 +171,8 @@ public class KhoaManagementPanel extends JPanel {
         if (confirm == JOptionPane.YES_OPTION) {
             if (khoaDAO.deleteKhoa(maKhoa)) {
                 JOptionPane.showMessageDialog(this, "Xóa khoa thành công!");
-                loadKhoaData(); // Refresh table
-                clearFields(); // Clear form
+                loadKhoaData(); 
+                clearFields(); 
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi xóa khoa! (Kiểm tra xem có dữ liệu ràng buộc không)", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -190,7 +198,6 @@ public class KhoaManagementPanel extends JPanel {
         }
         return true;
     }
-
 
     private Khoa createKhoaFromInput() {
         Khoa k = new Khoa();

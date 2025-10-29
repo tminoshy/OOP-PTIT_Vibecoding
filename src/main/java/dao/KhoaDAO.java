@@ -1,8 +1,5 @@
 package dao;
 
-import db.DatabaseConnector;
-import model.Khoa;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,9 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DatabaseConnector;
+import model.Khoa;
+
 
 public class KhoaDAO {
-
 
     public List<Khoa> getAllKhoa() {
         List<Khoa> danhSachKhoa = new ArrayList<>();
@@ -31,11 +30,9 @@ public class KhoaDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle exceptions appropriately (e.g., logging, custom exceptions)
         }
         return danhSachKhoa;
     }
-
 
     public boolean addKhoa(Khoa khoa) {
         String sql = "INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES (?, ?)";
@@ -54,7 +51,6 @@ public class KhoaDAO {
         }
     }
 
-
     public boolean updateKhoa(Khoa khoa) {
         String sql = "UPDATE Khoa SET TenKhoa = ? WHERE MaKhoa = ?";
 
@@ -72,7 +68,6 @@ public class KhoaDAO {
         }
     }
 
-
     public boolean deleteKhoa(String maKhoa) {
         String sql = "DELETE FROM Khoa WHERE MaKhoa = ?";
 
@@ -89,7 +84,6 @@ public class KhoaDAO {
             return false;
         }
     }
-
 
     public Khoa getKhoaById(String maKhoa) {
         String sql = "SELECT * FROM Khoa WHERE MaKhoa = ?";

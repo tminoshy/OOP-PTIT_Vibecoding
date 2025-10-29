@@ -2,10 +2,10 @@ package model;
 
 public class DangKy {
 
-    private String maDangKy; // Primary Key
-    private String maSinhVien; // Foreign key to SinhVien
-    private String maLop; // Foreign key to LopHocPhan
-    private String ngayDangKy; // Registration date (e.g., "YYYY-MM-DD")
+    private String maDangKy;
+    private String maSinhVien; 
+    private String maLop;
+    private String ngayDangKy; 
 
 
     public DangKy() {
@@ -19,7 +19,6 @@ public class DangKy {
         this.ngayDangKy = ngayDangKy;
     }
 
-    // --- Getters and Setters ---
 
     public String getMaDangKy() {
         return maDangKy;

@@ -1,17 +1,28 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.BangDiemDAO;
 import model.BangDiem;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
 
-/**
- * Panel for managing grades (BangDiem)
- * Provides CRUD operations for grade management
- */
 public class GradeManagementPanel extends JPanel {
     
     private BangDiemDAO bangDiemDAO;
@@ -89,7 +100,6 @@ public class GradeManagementPanel extends JPanel {
         gbc.gridx = 3;
         inputPanel.add(txtDiemTongKet, gbc);
         
-        // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
@@ -112,7 +122,6 @@ public class GradeManagementPanel extends JPanel {
         buttonPanel.add(btnRefresh);
         buttonPanel.add(btnCalculate);
         
-        // Table panel
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách bảng điểm"));
         JScrollPane scrollPane = new JScrollPane(gradeTable);
@@ -207,7 +216,6 @@ public class GradeManagementPanel extends JPanel {
             float diemGiuaKy = Float.parseFloat(txtDiemGiuaKy.getText().trim());
             float diemCuoiKy = Float.parseFloat(txtDiemCuoiKy.getText().trim());
             
-            // Simple calculation: 20% attendance + 30% midterm + 50% final
             float diemTongKet = (diemChuyenCan * 0.2f) + (diemGiuaKy * 0.3f) + (diemCuoiKy * 0.5f);
             
             txtDiemTongKet.setText(String.format("%.2f", diemTongKet));

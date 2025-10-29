@@ -1,8 +1,5 @@
 package dao;
 
-import db.DatabaseConnector;
-import model.DangKy;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,16 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for the DangKy (Registration) table.
- * Handles all database operations for DangKy.
- */
+import db.DatabaseConnector;
+import model.DangKy;
+
+
 public class DangKyDAO {
 
-    /**
-     * Retrieves a list of all DangKy from the database.
-     * @return A list of DangKy objects.
-     */
+
     public List<DangKy> getAllDangKy() {
         List<DangKy> danhSachDK = new ArrayList<>();
         String sql = "SELECT * FROM DangKy";
@@ -43,11 +37,7 @@ public class DangKyDAO {
         return danhSachDK;
     }
 
-    /**
-     * Adds a new DangKy to the database.
-     * @param dk The DangKy object to add.
-     * @return true if successful, false otherwise.
-     */
+
     public boolean addDangKy(DangKy dk) {
         String sql = "INSERT INTO DangKy (MaDangKy, MaSinhVien, MaLop, NgayDangKy) VALUES (?, ?, ?, ?)";
 
@@ -67,11 +57,6 @@ public class DangKyDAO {
         }
     }
 
-    /**
-     * Updates an existing DangKy in the database.
-     * @param dk The DangKy object with updated information.
-     * @return true if successful, false otherwise.
-     */
     public boolean updateDangKy(DangKy dk) {
         String sql = "UPDATE DangKy SET MaSinhVien = ?, MaLop = ?, NgayDangKy = ? WHERE MaDangKy = ?";
 
@@ -91,11 +76,6 @@ public class DangKyDAO {
         }
     }
 
-    /**
-     * Deletes a DangKy from the database.
-     * @param maDangKy The ID of the DangKy to delete.
-     * @return true if successful, false otherwise.
-     */
     public boolean deleteDangKy(String maDangKy) {
         String sql = "DELETE FROM DangKy WHERE MaDangKy = ?";
 
@@ -112,11 +92,6 @@ public class DangKyDAO {
         }
     }
 
-    /**
-     * Retrieves a single DangKy by its ID.
-     * @param maDangKy The ID of the DangKy.
-     * @return A DangKy object, or null if not found.
-     */
     public DangKy getDangKyById(String maDangKy) {
         String sql = "SELECT * FROM DangKy WHERE MaDangKy = ?";
         DangKy dk = null;
