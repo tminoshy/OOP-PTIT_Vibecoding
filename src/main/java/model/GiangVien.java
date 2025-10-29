@@ -7,11 +7,11 @@ public class GiangVien {
     private String hoVaTen;
     private String email;
     private String soDienThoai;
-    private String maKhoa; // Foreign key to Khoa
+    private String maKhoa; 
     private String ngaySinh;
-    private char gioiTinh; // 'M' (Male), 'F' (Female), 'O' (Other)
-    private String hocVi; // Degree: e.g., "Cử nhân", "Thạc sĩ", "Tiến sĩ"
-    private String hocHam; // Academic Rank: e.g., "GS", "PGS"
+    private char gioiTinh; 
+    private String hocVi; 
+    private String hocHam; 
 
     public GiangVien() {
     }
@@ -30,7 +30,6 @@ public class GiangVien {
         this.hocHam = hocHam;
     }
 
-    // --- Getters and Setters ---
 
     public String getMaGiangVien() {
         return maGiangVien;
