@@ -1,17 +1,28 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.SinhVienDAO;
 import model.SinhVien;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
-
-/**
- * Panel for managing students (SinhVien)
- * Provides CRUD operations with a user-friendly interface
- */
 public class StudentManagementPanel extends JPanel {
     
     private SinhVienDAO sinhVienDAO;
@@ -28,7 +39,6 @@ public class StudentManagementPanel extends JPanel {
     }
     
     private void initializeComponents() {
-        // Initialize text fields
         txtMaSinhVien = new JTextField(15);
         txtHoTen = new JTextField(20);
         txtNgaySinh = new JTextField(15);
@@ -38,15 +48,13 @@ public class StudentManagementPanel extends JPanel {
         txtCCCD = new JTextField(15);
         txtMaLop = new JTextField(15);
         
-        // Initialize gender combo box
         cmbGioiTinh = new JComboBox<>(new String[]{"M", "F", "K"});
         
-        // Initialize table
         String[] columnNames = {"Mã SV", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "SĐT", "CCCD", "Mã lớp"};
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Make table read-only
+                return false; 
             }
         };
         studentTable = new JTable(tableModel);
@@ -61,12 +69,11 @@ public class StudentManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
         
-        // Create main panels
+
         JPanel inputPanel = createInputPanel();
         JPanel buttonPanel = createButtonPanel();
         JPanel tablePanel = createTablePanel();
         
-        // Add panels to main layout
         add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
         add(tablePanel, BorderLayout.SOUTH);
@@ -78,7 +85,6 @@ public class StudentManagementPanel extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         
-        // Row 1
         gbc.gridx = 0; gbc.gridy = 0;
         panel.add(new JLabel("Mã sinh viên:"), gbc);
         gbc.gridx = 1;
@@ -89,7 +95,6 @@ public class StudentManagementPanel extends JPanel {
         gbc.gridx = 3;
         panel.add(txtHoTen, gbc);
         
-        // Row 2
         gbc.gridx = 0; gbc.gridy = 1;
         panel.add(new JLabel("Ngày sinh:"), gbc);
         gbc.gridx = 1;
@@ -100,13 +105,11 @@ public class StudentManagementPanel extends JPanel {
         gbc.gridx = 3;
         panel.add(cmbGioiTinh, gbc);
         
-        // Row 3
         gbc.gridx = 0; gbc.gridy = 2;
         panel.add(new JLabel("Địa chỉ:"), gbc);
         gbc.gridx = 1; gbc.gridwidth = 3;
         panel.add(txtDiaChi, gbc);
         
-        // Row 4
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 1;
         panel.add(new JLabel("Email:"), gbc);
         gbc.gridx = 1;
@@ -117,7 +120,6 @@ public class StudentManagementPanel extends JPanel {
         gbc.gridx = 3;
         panel.add(txtSdt, gbc);
         
-        // Row 5
         gbc.gridx = 0; gbc.gridy = 4;
         panel.add(new JLabel("CCCD:"), gbc);
         gbc.gridx = 1;

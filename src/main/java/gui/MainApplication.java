@@ -1,12 +1,16 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
-/**
- * Main application window for the Student Management System
- * Uses JTabbedPane to organize different management sections
- */
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+
+
 public class MainApplication extends JFrame {
     
     private JTabbedPane tabbedPane;
@@ -20,7 +24,6 @@ public class MainApplication extends JFrame {
     private void initializeComponents() {
         tabbedPane = new JTabbedPane();
         
-        // Create different management panels
         StudentManagementPanel studentPanel = new StudentManagementPanel();
         CourseManagementPanel coursePanel = new CourseManagementPanel();
         GradeManagementPanel gradePanel = new GradeManagementPanel();
@@ -30,7 +33,6 @@ public class MainApplication extends JFrame {
         LopManagementPanel lopPanel = new LopManagementPanel();
         GiangVienManagementPanel giangVienPanel = new GiangVienManagementPanel();
         
-        // Add tabs
         tabbedPane.addTab("Sinh viên", studentPanel);
         tabbedPane.addTab("Môn học", coursePanel);
         tabbedPane.addTab("Điểm", gradePanel);
@@ -45,7 +47,6 @@ public class MainApplication extends JFrame {
         setLayout(new BorderLayout());
         add(tabbedPane, BorderLayout.CENTER);
         
-        // Add status bar
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         statusPanel.setBorder(BorderFactory.createEtchedBorder());
         JLabel statusLabel = new JLabel("Hệ thống quản lý sinh viên - Sẵn sàng");

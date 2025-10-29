@@ -1,8 +1,5 @@
 package dao;
 
-import db.DatabaseConnector;
-import model.Lop;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import db.DatabaseConnector;
+import model.Lop;
 
 
 public class LopDAO {
@@ -77,7 +77,6 @@ public class LopDAO {
         }
     }
 
-
     public boolean deleteLop(String maLop) {
         String sql = "DELETE FROM Lop WHERE MaLop = ?";
 
@@ -93,7 +92,6 @@ public class LopDAO {
             return false;
         }
     }
-
 
     public Lop getLopById(String maLop) {
         String sql = "SELECT * FROM Lop WHERE MaLop = ?";

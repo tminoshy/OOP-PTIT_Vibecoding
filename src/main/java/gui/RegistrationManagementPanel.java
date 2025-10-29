@@ -1,17 +1,28 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.DangKyDAO;
 import model.DangKy;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
 
-/**
- * Panel for managing student registrations (DangKy)
- * Provides CRUD operations for registration management
- */
 public class RegistrationManagementPanel extends JPanel {
     
     private DangKyDAO dangKyDAO;
@@ -51,7 +62,6 @@ public class RegistrationManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
         
-        // Input panel
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin đăng ký"));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -77,7 +87,6 @@ public class RegistrationManagementPanel extends JPanel {
         gbc.gridx = 3;
         inputPanel.add(txtNgayDangKy, gbc);
         
-        // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
@@ -97,7 +106,6 @@ public class RegistrationManagementPanel extends JPanel {
         buttonPanel.add(btnClear);
         buttonPanel.add(btnRefresh);
         
-        // Table panel
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách đăng ký"));
         JScrollPane scrollPane = new JScrollPane(registrationTable);

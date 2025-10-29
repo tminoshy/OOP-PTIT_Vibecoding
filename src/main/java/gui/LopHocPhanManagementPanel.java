@@ -1,18 +1,27 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.LopHocPhanDAO;
 import model.LopHocPhan;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
-
-/**
- * Panel for managing course sections (LopHocPhan)
- * Provides CRUD operations for course section management
- * (Matches the style of KhoaManagementPanel)
- */
 public class LopHocPhanManagementPanel extends JPanel {
 
     private LopHocPhanDAO lopHocPhanDAO;
@@ -38,14 +47,12 @@ public class LopHocPhanManagementPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                // Make table cells not editable
                 return false;
             }
         };
         lopHocPhanTable = new JTable(tableModel);
         lopHocPhanTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Add a selection listener to the table
         lopHocPhanTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 loadSelectedLopHocPhan();
@@ -56,11 +63,10 @@ public class LopHocPhanManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
 
-        // Input panel
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin lớp học phần"));
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5); // Padding
+        gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
         gbc.gridx = 0; gbc.gridy = 0;
@@ -89,7 +95,6 @@ public class LopHocPhanManagementPanel extends JPanel {
         inputPanel.add(txtNamHoc, gbc);
 
 
-        // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
@@ -97,7 +102,6 @@ public class LopHocPhanManagementPanel extends JPanel {
         JButton btnClear = new JButton("Làm mới");
         JButton btnRefresh = new JButton("Tải lại");
 
-        // Add action listeners
         btnAdd.addActionListener(e -> addLopHocPhan());
         btnUpdate.addActionListener(e -> updateLopHocPhan());
         btnDelete.addActionListener(e -> deleteLopHocPhan());
@@ -110,24 +114,20 @@ public class LopHocPhanManagementPanel extends JPanel {
         buttonPanel.add(btnClear);
         buttonPanel.add(btnRefresh);
 
-        // Table panel
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách lớp học phần"));
         JScrollPane scrollPane = new JScrollPane(lopHocPhanTable);
         scrollPane.setPreferredSize(new Dimension(0, 300));
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Add panels to the main layout
         add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
         add(tablePanel, BorderLayout.SOUTH);
     }
 
-    /**
-     * Loads all LopHocPhan from the database and populates the JTable
-     */
+
     private void loadLopHocPhanData() {
-        tableModel.setRowCount(0); // Clear existing data
+        tableModel.setRowCount(0); 
         List<LopHocPhan> lopHocPhanList = lopHocPhanDAO.getAllLopHocPhan();
 
         for (LopHocPhan lhp : lopHocPhanList) {
@@ -142,9 +142,7 @@ public class LopHocPhanManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Populates the text fields when a row in the table is selected
-     */
+
     private void loadSelectedLopHocPhan() {
         int selectedRow = lopHocPhanTable.getSelectedRow();
         if (selectedRow >= 0) {
@@ -156,9 +154,6 @@ public class LopHocPhanManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Validates input and adds a new LopHocPhan to the database
-     */
     private void addLopHocPhan() {
         LopHocPhan lhp = createLopHocPhanFromInput();
         if (lhp != null) {
@@ -172,9 +167,7 @@ public class LopHocPhanManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Validates input and updates an existing LopHocPhan in the database
-     */
+
     private void updateLopHocPhan() {
         LopHocPhan lhp = createLopHocPhanFromInput();
         if (lhp != null) {
@@ -187,9 +180,7 @@ public class LopHocPhanManagementPanel extends JPanel {
         }
     }
 
-    /**
-     * Deletes the selected LopHocPhan from the database
-     */
+
     private void deleteLopHocPhan() {
         String maLop = txtMaLop.getText().trim();
         if (maLop.isEmpty()) {
@@ -205,17 +196,14 @@ public class LopHocPhanManagementPanel extends JPanel {
         if (confirm == JOptionPane.YES_OPTION) {
             if (lopHocPhanDAO.deleteLopHocPhan(maLop)) {
                 JOptionPane.showMessageDialog(this, "Xóa lớp học phần thành công!");
-                loadLopHocPhanData(); // Refresh table
-                clearFields(); // Clear form
+                loadLopHocPhanData();
+                clearFields();
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi xóa lớp học phần!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    /**
-     * Clears all text fields and table selection
-     */
     private void clearFields() {
         txtMaLop.setText("");
         txtMaMonHoc.setText("");
@@ -225,10 +213,7 @@ public class LopHocPhanManagementPanel extends JPanel {
         lopHocPhanTable.clearSelection();
     }
 
-    /**
-     * Validates that required fields are not empty and are in the correct format
-     * @return true if input is valid, false otherwise
-     */
+
     private boolean validateInput() {
         if (txtMaLop.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mã lớp!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -251,7 +236,6 @@ public class LopHocPhanManagementPanel extends JPanel {
             return false;
         }
 
-        // Validate integer fields
         try {
             Integer.parseInt(txtHocKy.getText().trim());
         } catch (NumberFormatException e) {
@@ -268,13 +252,10 @@ public class LopHocPhanManagementPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Creates a LopHocPhan object from the text field inputs
-     * @return a new LopHocPhan object, or null if validation fails
-     */
+
     private LopHocPhan createLopHocPhanFromInput() {
         if (!validateInput()) {
-            return null; // Return null if validation fails
+            return null; 
         }
 
         LopHocPhan lhp = new LopHocPhan();

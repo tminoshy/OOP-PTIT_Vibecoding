@@ -1,12 +1,26 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 import dao.LopDAO;
 import model.Lop;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.List;
 
 
 public class LopManagementPanel extends JPanel {
@@ -33,13 +47,11 @@ public class LopManagementPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-
                 return false;
             }
         };
         lopTable = new JTable(tableModel);
         lopTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
 
         lopTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -51,11 +63,10 @@ public class LopManagementPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
 
-
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBorder(BorderFactory.createTitledBorder("Thông tin lớp"));
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5); // Padding
+        gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
         gbc.gridx = 0; gbc.gridy = 0;
@@ -79,14 +90,12 @@ public class LopManagementPanel extends JPanel {
         inputPanel.add(txtSiSo, gbc);
 
 
-
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnAdd = new JButton("Thêm");
         JButton btnUpdate = new JButton("Cập nhật");
         JButton btnDelete = new JButton("Xóa");
         JButton btnClear = new JButton("Làm mới");
         JButton btnRefresh = new JButton("Tải lại");
-
 
         btnAdd.addActionListener(e -> addLop());
         btnUpdate.addActionListener(e -> updateLop());
@@ -100,13 +109,11 @@ public class LopManagementPanel extends JPanel {
         buttonPanel.add(btnClear);
         buttonPanel.add(btnRefresh);
 
-
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Danh sách lớp"));
         JScrollPane scrollPane = new JScrollPane(lopTable);
         scrollPane.setPreferredSize(new Dimension(0, 300));
         tablePanel.add(scrollPane, BorderLayout.CENTER);
-
 
         add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
@@ -115,7 +122,7 @@ public class LopManagementPanel extends JPanel {
 
 
     private void loadLopData() {
-        tableModel.setRowCount(0); // Clear existing data
+        tableModel.setRowCount(0);
         List<Lop> lopList = lopDAO.getAllLop();
 
         for (Lop lop : lopList) {
@@ -146,8 +153,8 @@ public class LopManagementPanel extends JPanel {
         if (lop != null) {
             if (lopDAO.addLop(lop)) {
                 JOptionPane.showMessageDialog(this, "Thêm lớp thành công!");
-                loadLopData(); // Refresh table
-                clearFields(); // Clear form
+                loadLopData();
+                clearFields(); 
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi thêm lớp! Mã lớp có thể đã tồn tại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -160,7 +167,7 @@ public class LopManagementPanel extends JPanel {
         if (lop != null) {
             if (lopDAO.updateLop(lop)) {
                 JOptionPane.showMessageDialog(this, "Cập nhật lớp thành công!");
-                loadLopData(); // Refresh table
+                loadLopData();
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật lớp!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -183,8 +190,8 @@ public class LopManagementPanel extends JPanel {
         if (confirm == JOptionPane.YES_OPTION) {
             if (lopDAO.deleteLop(maLop)) {
                 JOptionPane.showMessageDialog(this, "Xóa lớp thành công!");
-                loadLopData(); // Refresh table
-                clearFields(); // Clear form
+                loadLopData(); 
+                clearFields(); 
             } else {
                 JOptionPane.showMessageDialog(this, "Lỗi khi xóa lớp!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -199,7 +206,6 @@ public class LopManagementPanel extends JPanel {
         txtSiSo.setText("");
         lopTable.clearSelection();
     }
-
 
     private boolean validateInput() {
         if (txtMaLop.getText().trim().isEmpty()) {
@@ -218,7 +224,6 @@ public class LopManagementPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập sĩ số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
 
         try {
             Integer.parseInt(txtSiSo.getText().trim());
