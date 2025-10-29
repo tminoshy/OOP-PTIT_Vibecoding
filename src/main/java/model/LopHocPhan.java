@@ -3,12 +3,11 @@ package model;
 
 public class LopHocPhan {
 
-    private String maLop; // Primary Key
-    private String maMonHoc; // Foreign key to MonHoc
-    private String maGiangVien; // Foreign key to GiangVien
-    private int hocKy; // Semester (e.g., 1, 2, or 3 for summer)
-    private int namHoc; // Starting year of the academic year (e.g., 2023 for 2023-2024)
-
+    private String maLop; 
+    private String maMonHoc; 
+    private String maGiangVien; 
+    private int hocKy; 
+    private int namHoc; 
 
     public LopHocPhan() {
     }
@@ -22,7 +21,6 @@ public class LopHocPhan {
         this.namHoc = namHoc;
     }
 
-    // --- Getters and Setters ---
 
     public String getMaLop() {
         return maLop;
