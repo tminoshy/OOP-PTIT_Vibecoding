@@ -6,7 +6,7 @@ public class SinhVien {
 
     private String maSinhVien;
     private String hoTen;
-    private String ngaySinh; // Using String for simplicity, matches database schema
+    private String ngaySinh; 
     private char gioiTinh;
     private String diaChi;
     private String email;
@@ -14,11 +14,11 @@ public class SinhVien {
     private String CCCD;
     private String maLop;
 
-    // Default constructor
+
     public SinhVien() {
     }
 
-    // Constructor with all fields
+  
     public SinhVien(String maSinhVien, String hoTen, String ngaySinh, char gioiTinh, String diaChi, String email, String sdt, String CCCD, String maLop) {
         this.maSinhVien = maSinhVien;
         this.hoTen = hoTen;
@@ -31,7 +31,7 @@ public class SinhVien {
         this.maLop = maLop;
     }
 
-    // --- Getters and Setters ---
+
 
     public String getMaSinhVien() {
         return maSinhVien;
